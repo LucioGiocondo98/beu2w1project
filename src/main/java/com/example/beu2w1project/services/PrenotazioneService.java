@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public class PrenotazioneService {
@@ -21,6 +22,11 @@ public class PrenotazioneService {
 
     @Autowired
     private PostazioneRepository postazioneRepo;
+
+
+    public List<Prenotazione> findAll() {
+        return prenotazioneRepo.findAll();
+    }
 
     public Prenotazione prenota(String username, Long idPostazione, LocalDate data) {
         Utente utente = utenteRepo.findByUsername(username)
@@ -43,7 +49,5 @@ public class PrenotazioneService {
         pren.setDataPrenotazione(data);
         return prenotazioneRepo.save(pren);
     }
-
-
 
 }
